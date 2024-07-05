@@ -1,4 +1,4 @@
-package com.hello.HelloSpring.common.daos;
+package com.hello.hellospring.common.daos;
 
 public interface MemberDao {
 
