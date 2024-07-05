@@ -17,7 +17,7 @@
         ,birthdate
         ,hp
         ,reg_dt as regDt
-        ,last_login_dt as lasLoginDt
+        ,last_login_dt as lastLoginDt
     from 
         member
     where
