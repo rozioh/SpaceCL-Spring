@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.HelloSpring.common.bean.MemberBean;
+import com.hello.HelloSpring.common.bean.MemberTestBean;
 
 @Controller
 public class InputController {
@@ -20,7 +20,7 @@ public class InputController {
 	@RequestMapping(value = "/insertStudent", method = {RequestMethod.POST},
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody // json으로 반환하겠다.
-	public Map<String, Object> insertStudent(@RequestBody MemberBean bean){ // 항상 json으로 반환되기 때문에 반환하는 형태인 Map<string, object>는 변함없다.
+	public Map<String, Object> insertStudent(@RequestBody MemberTestBean bean){ // 항상 json으로 반환되기 때문에 반환하는 형태인 Map<string, object>는 변함없다.
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		

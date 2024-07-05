@@ -1,16 +1,17 @@
 package com.hello.HelloSpring.common.bean;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
 public class MemberBean {
-	
+	private String memberNo;
+	private String id;
+	private String pw;
 	private String name;
-	private int age;
-	private boolean isStudent;
-	// 객체
-	private AddressBean address;
-	private List<String> languages;
+	private String email;
+	private String birthdate;
+	private String hp;
+	private String addr;
+	private String last_login_dt;
+	private String reg_dt;
 }
