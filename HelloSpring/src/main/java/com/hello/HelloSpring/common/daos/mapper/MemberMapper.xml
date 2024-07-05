@@ -24,4 +24,41 @@
         id = #{id}
   </select>
   
+  <!-- 여러 건 조회 -->
+  <select id="selectMemberList" parameterType="com.hello.hellospring.common.bean.MemberBean">
+  <!-- ResultType은 알아서 매핑된다. -->
+    select
+        member_no as memberNo 
+        ,id
+        ,pw
+        ,name
+        ,email
+        ,addr
+        ,birthdate
+        ,hp
+        ,reg_dt as regDt
+        ,last_login_dt as lastLoginDt
+    from 
+        member
+  </select>
+  
+  <!-- 검색 조회 -->
+  <select id="selectMemberSearch" parameterType="com.hello.hellospring.common.bean.MemberBean">
+  <!-- ResultType은 알아서 매핑된다. -->
+    select
+        member_no as memberNo 
+        ,id
+        ,pw
+        ,name
+        ,email
+        ,addr
+        ,birthdate
+        ,hp
+        ,reg_dt as regDt
+        ,last_login_dt as lastLoginDt
+    from 
+        member
+    where
+        name like concat('%', #{name}, '%')
+  </select>
 </mapper>

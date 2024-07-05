@@ -1,6 +1,7 @@
 package com.hello.hellospring.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,29 @@ public class DaoTestController {
 			map.put("memberBean", "존재하지 않는 id 멤버 입니다.");
 		}
 		
+		return map;
+	}
+	
+	@RequestMapping(value = "/selectMemberList", method = {RequestMethod.GET})
+	@ResponseBody
+	public Map<String, Object> selectMemberList(MemberBean bean) throws Exception{
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<MemberBean> memberList= memberDao.selectMemberList(bean);
+		map.put("memberList", memberList);
+		
+		return map;
+	}
+	
+	@RequestMapping(value = "/selectMemberSearch", method = {RequestMethod.GET})
+	@ResponseBody
+	public Map<String, Object> selectMemberSearch(MemberBean bean) throws Exception{
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<MemberBean> memberSearch= memberDao.selectMemberSearch(bean);
+		map.put("memberSearch", memberSearch);
 		
 		return map;
 	}
