@@ -54,7 +54,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 로그인
+	 * 로그인 토큰 발행
 	 */
 	@RequestMapping(value = "/getLoginToken", method = {RequestMethod.POST})
 	@ResponseBody
