@@ -20,7 +20,7 @@ public class MemberService {
 	@Autowired
 	private BoardDao boardDao;
 	
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	public int deleteMember(MemberBean memberBean) throws Exception{
 		int res = 0;
 		
@@ -30,7 +30,7 @@ public class MemberService {
 		// 1. Board 테이블에서 삭제
 		boardDao.deleteBoardFromMemberNo(boardBean);
 		
-		// 2. Member 테이블에서 삭
+		// 2. Member 테이블에서 삭제
 //		memberDao.deleteMember()
 		throw new Exception("일부러 에러 일으킨다."); //테스트
 		
