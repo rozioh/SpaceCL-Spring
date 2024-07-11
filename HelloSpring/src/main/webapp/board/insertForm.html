@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<!-- 주석: 제이쿼리를 온라인상의 주소로 사용하겠다고 선언한다. -->
+<script src="https://code.jquery.com/jquery-3.7.1.js" 
+integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+crossorigin="anonymous"></script>
+
+<script>
+    function goLogin() {
+        // alert("로그인 버튼 눌렀지?");
+        var memId = $("#memId").val();
+        var memPw = $("#memPw").val();
+        // alert("id: " + memId + ", pw: " + memPw);
+
+        var sendJson = {
+            "id": memId
+            ,"pw":memPw
+        };
+
+        // ID, PW 를 서버로 보내
+        $.ajax({
+            type:'POST',
+            url: "/getLoginToken",
+            data: JSON.stringify(sendJson),
+            dataType:"json",
+            contentType:"application/json",
+            success: function(data){
+                console.log(data);
+                alert(data.resultMsg);
+            }
+        });        
+    }
+</script>
+</head>
+<body>
+    <h1>글쓰기</h1>
+    <form action="">
+        title: <input type="text" /> <br />
+        content: <br />
+        <textarea rows="10" cols="30"></textarea> <br />
+    </form>
+
+
+
+
+</body>
+</html>

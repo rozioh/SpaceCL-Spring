@@ -13,4 +13,12 @@
         member_no = #{memberNo}
   </delete>
   
+  <!-- 글쓰기 -->
+  <insert id="insertBoard"
+    parameterType="com.hello.hellospring.common.bean.BoardBean">
+    insert into
+      board(title, contents, member_no)
+    values
+      (#{title}, #{contents}, 1)
+  </insert>
 </mapper>

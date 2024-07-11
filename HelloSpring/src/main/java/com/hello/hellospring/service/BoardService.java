@@ -37,8 +37,15 @@ public class BoardService {
 		}
 	}
 	
-	public int insertBoard(BoardBean bean) {
-		return boardDao.insertBoard(bean);
+	public int insertBoard(BoardBean bean) throws Exception{
+		
+		int insertBoardRow = boardDao.insertBoard(bean);
+		
+		if(insertBoardRow > 0) {
+			return 1;
+		}else {
+			throw new Exception("게시글 등록이 되지 않았습니다.");
+		}
 	}
 	
 	public int updateBoard(BoardBean bean) {
