@@ -29,4 +29,26 @@
         ,#{memberNo}
       )
   </insert>
+  
+  <select id="selectBoardList" parameterType="com.hello.hellospring.common.bean.BoardBean">
+    SELECT 
+        board_no as boardNo
+        , title
+        , contents
+        , count
+        , secret_yn as secretYn
+        , member_no as memberNo, 
+        (select name from member where member_no = b.member_no) memberName
+        , reg_dt as regDt
+    FROM board b
+    WHERE 
+      1=1
+    <if test="search != null and search != ''">
+      OR title like CONCAT('%', #{search}, '%') 
+      OR contents like CONCAT('%', #{search}, '%')
+    </if>
+    ORDER BY board_no DESC 
+    LIMIT   #{page}  , 10;
+  </select>
+  
 </mapper>
