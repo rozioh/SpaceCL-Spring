@@ -82,7 +82,16 @@ crossorigin="anonymous"></script>
                     $("#boardTable > thead").append(add);
                 };//end for
                 
-                
+                // 페이징 테이블에 대한 for문을 돈다.
+                $("#pagingTable").append("<tr>");
+                for(var i=1; i <= data.totalPage; i++ ){
+                    var add = "<td>";
+                        add += "<span style='cursor: pointer;'  onclick='goPage(" + i + ")'>" + i + "</span>";
+                        add += "</td>";
+                        $("#pagingTable").append(add);
+                    
+                } // end for
+                $("#pagingTable").append("</tr>");
             }//end if
             
         }
@@ -102,6 +111,14 @@ crossorigin="anonymous"></script>
             <td>조회수</td>
             <td>날짜</td>
         </thead>
+    </table>
+    
+    <br/>
+  
+    <table id="pagingTable" border="1">
+        <tr>
+       
+        </tr>   
     </table>
      
 </body>
