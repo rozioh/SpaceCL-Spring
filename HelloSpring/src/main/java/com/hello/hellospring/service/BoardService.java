@@ -38,14 +38,7 @@ public class BoardService {
 	}
 	
 	public int insertBoard(BoardBean bean) throws Exception{
-		
-		int insertBoardRow = boardDao.insertBoard(bean);
-		
-		if(insertBoardRow > 0) {
-			return 1;
-		}else {
-			throw new Exception("게시글 등록이 되지 않았습니다.");
-		}
+		return boardDao.insertBoard(bean);
 	}
 	
 	public int updateBoard(BoardBean bean) {
@@ -60,6 +53,11 @@ public class BoardService {
 		return boardDao.selectBoard(bean);
 	}
 
+	// 전체 글의 개수 조회
+	public int selectBoardListCount(BoardBean bean) {
+		return boardDao.selectBoardListCount(bean);
+	}
+	
 	public List<BoardBean> selecetBoardList(BoardBean bean) {
 		return boardDao.selectBoardList(bean);
 	}

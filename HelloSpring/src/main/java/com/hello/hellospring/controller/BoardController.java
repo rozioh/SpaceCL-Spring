@@ -1,9 +1,11 @@
 package com.hello.hellospring.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.hellospring.common.Constants;
 import com.hello.hellospring.common.bean.BoardBean;
+import com.hello.hellospring.common.bean.MemberBean;
 import com.hello.hellospring.service.BoardService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
@@ -20,13 +25,21 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping(value = "/insertBoard", method = {RequestMethod.POST})
-	@ResponseBody
-	public Map<String, Object> insertBoard(@RequestBody BoardBean bean) {
+	@RequestMapping(value = "/insertBoard", method = {RequestMethod.POST},
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody // json으로 반환하겠다.
+	public Map<String, Object> insertBoard(@RequestBody BoardBean bean, HttpSession session) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		String result = Constants.RESULT_VAL_FAIL;
-		String resultMsg = "실패 하였습니다.";
+		String resultMsg = "게시글 등록에 실패 하였습니다.";
+		
+		// 세션값을 들고온다.
+		MemberBean memberBean = (MemberBean) session.getAttribute(Constants.KEY_SESSION_MEMBER_BEAN);
+		if(memberBean != null) {
+			// 토큰값 안의 memberNo 값을 가져와서 insert 정보에 넣어준다.
+			bean.setMemberNo( memberBean.getMemberNo() );
+		}
 		
 		try {
 			int res = boardService.insertBoard(bean);

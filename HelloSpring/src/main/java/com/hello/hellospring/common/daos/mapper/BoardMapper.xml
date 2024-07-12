@@ -16,9 +16,17 @@
   <!-- 글쓰기 -->
   <insert id="insertBoard"
     parameterType="com.hello.hellospring.common.bean.BoardBean">
-    insert into
-      board(title, contents, member_no)
+    insert into board
+      (
+        title
+        ,contents
+        ,member_no
+      )
     values
-      (#{title}, #{contents}, 1)
+      (
+        #{title}
+        ,#{contents}
+        ,#{memberNo}
+      )
   </insert>
 </mapper>
