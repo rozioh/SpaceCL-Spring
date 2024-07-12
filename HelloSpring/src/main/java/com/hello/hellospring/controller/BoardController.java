@@ -58,5 +58,42 @@ public class BoardController {
 
 		return map;
 	}
+	
+	@RequestMapping(value = "/selectBoardList", method = {RequestMethod.GET})
+	@ResponseBody
+	public Map<String, Object> selectBoardList(BoardBean bean) throws Exception{
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		String result = Constants.RESULT_VAL_FAIL;
+		String resultMsg = "게시글 목록 조회에 실패 하였습니다.";
+		
+		List<BoardBean> list = null;
+		int totalPage = 0;
+		int totalCount = 0;
+		try {
+			totalCount = boardService.selectBoardListCount(bean);
+			totalPage = (int)Math.ceil(totalCount / 10.0);
+			
+			int startOffset = ((bean.getPage() - 1) * 10); // 공식
+			bean.setPage(startOffset);
+			
+			list = boardService.selecetBoardList(bean);
+			result = Constants.RESULT_VAL_OK;
+			resultMsg = "조회에 성공하였습니다.";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		map.put(Constants.RESULT_KEY_DATA, list);
+		map.put("totalPage", totalPage);
+		map.put("totalCount", totalCount);
+		
+		map.put(Constants.RESULT_KEY, result);
+		map.put(Constants.RESULT_KEY_MSG, resultMsg);
+		
+		return map;
+	}
+	
+	
 
 }
